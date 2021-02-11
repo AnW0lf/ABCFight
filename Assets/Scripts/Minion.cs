@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Minion : MonoBehaviour
 {
-    [SerializeField] private float _speed = 1f;
+    [SerializeField] private float _forwardSpeed = 1f;
+    [SerializeField] private float _horizontalSpeed = 1f;
     [SerializeField] private int _wayCount = 3;
     [SerializeField] private Animator _animator = null;
 
@@ -18,7 +19,12 @@ public class Minion : MonoBehaviour
         }
     }
 
-    private float XCoord => (_wayNumber - 2) * 1.5f;
+    private float _xCoord = 0f;
+    public float XCoord
+    {
+        get => _xCoord;
+        set => _xCoord = Mathf.Clamp(value, -(_wayCount / 2) * 1.5f, (_wayCount / 2) * 1.5f);
+    }
 
     public Transform Team { get; set; } = null;
     enum State { STAY, MOVE, FIGHT }
@@ -52,11 +58,16 @@ public class Minion : MonoBehaviour
                 print("Stay");
                 break;
             case State.MOVE:
-                _animator.SetFloat("Speed", _speed);
-                transform.position += transform.forward * _speed * Time.deltaTime;
+                _animator.SetFloat("Speed", _forwardSpeed);
+                transform.position += transform.forward * _forwardSpeed * Time.deltaTime;
+
                 Vector3 position = transform.position;
-                position.x = XCoord;
-                transform.position = Vector3.Lerp(transform.position, position, 0.05f);
+                if (Mathf.Abs(position.x - XCoord) < _horizontalSpeed * Time.deltaTime)
+                    position.x = XCoord;
+                else
+                    position.x += Mathf.Sign(XCoord - position.x) * _horizontalSpeed * Time.deltaTime;
+
+                transform.position = position;
                 break;
             case State.FIGHT:
                 print("Fight");
