@@ -11,6 +11,8 @@ public class WordSetter : MonoBehaviour
     [SerializeField] private Bot _bot = null;
     [SerializeField] private Player _player = null;
     [SerializeField] private Player _botPlayer = null;
+    [SerializeField] private ManChain _playerChain = null;
+    [SerializeField] private ManChain _botChain = null;
 
     private bool _playerRound = false;
     private bool _finished = false;
@@ -42,17 +44,25 @@ public class WordSetter : MonoBehaviour
 
     public void Next()
     {
-        if (_finished) return;
-        _playerRound = !_playerRound;
-        if (_playerRound)
-            StartCoroutine(Utils.DelayedCall(1f, () => _inputPanel.SetActive(true)));
-        else
-            _bot.Begin();
+        StartCoroutine(Utils.DelayedCall(1f, () =>
+        {
+            if (_finished) return; 
+
+            _playerRound = !_playerRound;
+            if (_playerRound)
+                _inputPanel.SetActive(true);
+            else
+                _bot.Begin();
+        }));
     }
 
     private void Start()
     {
         _road.OnEndRunning += Next;
         Next();
+        _playerChain.AddPlayer(_player);
+        _botChain.AddPlayer(_botPlayer);
+        _player.ManChain = _playerChain;
+        _botPlayer.ManChain = _botChain;
     }
 }

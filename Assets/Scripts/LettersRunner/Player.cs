@@ -1,15 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator), typeof(NavMeshAgent))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Transform _targetPoint = null;
     [SerializeField] private Color _letterColor = Color.green;
     private Animator _animator = null;
     private NavMeshAgent _agent = null;
+
+    public Transform TargetPoint { get; set; } = null;
+    public ManChain ManChain { get; set; } = null;
 
     public Color LetterColor => _letterColor;
 
@@ -22,9 +22,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (_targetPoint != null)
-            _agent.SetDestination(_targetPoint.position);
+        Vector3 destination = transform.position;
+        if (ManChain != null && ManChain.Contains(this))
+            destination = ManChain.GetDestination(this);
+        else if (TargetPoint != null)
+            destination = TargetPoint.position;
 
+        _agent.SetDestination(destination);
         _animator.SetFloat("Speed", _agent.velocity.magnitude);
     }
 

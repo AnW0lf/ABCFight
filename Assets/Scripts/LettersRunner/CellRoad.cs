@@ -23,6 +23,7 @@ public class CellRoad : MonoBehaviour
     {
         if (cell == _cells[_emptyCellIndex - 1])
             OnEndRunning?.Invoke();
+
     }
 
     public void SetWord(string word, Player player)
