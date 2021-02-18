@@ -93,6 +93,7 @@ public class Navigator : MonoBehaviour
 
         NavMeshAgent agent = Instantiate(_minionPrefab).GetComponent<NavMeshAgent>();
         agent.transform.position = position;
+        agent.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         agent.Warp(position);
 
         StartCoroutine(Utils.CrossFading(Vector3.zero, Vector3.one, 0.5f, (scale) => agent.transform.localScale = scale, (a, b, c) => Vector3.Lerp(a, b, c)));
