@@ -7,6 +7,8 @@ public class Doors : MonoBehaviour
 {
     [SerializeField] private Door[] _doors = null;
 
+    private Navigator _target = null;
+
     private void Start()
     {
         foreach (var door in _doors) door.OnEnterDoor += EnterDoor;
@@ -14,9 +16,16 @@ public class Doors : MonoBehaviour
 
     private void EnterDoor(Door door, Navigator navigator)
     {
-        print($"{navigator.name} enter door {door.name}");
+        _target = navigator;
         foreach (var d in _doors) d.Questioned = true;
-        StartCoroutine(Utils.DelayedCall(5f, () => OpenDoors(3, navigator)));
+        _target.QuestController.OnSubmit += Submit;
+        _target.QuestController.Begin();
+    }
+
+    private void Submit(string word)
+    {
+        OpenDoors(word.Length, _target);
+        _target.QuestController.OnSubmit -= Submit;
     }
 
     private void OpenDoors(int count, Navigator navigator)

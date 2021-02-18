@@ -15,6 +15,9 @@ public class Navigator : MonoBehaviour
     [SerializeField] private List<NavMeshAgent> _agents = null;
     [Header("Minion")]
     [SerializeField] private GameObject _minionPrefab = null;
+    [SerializeField] private QuestController _questController = null;
+
+    public QuestController QuestController => _questController;
 
     public bool Active
     {
