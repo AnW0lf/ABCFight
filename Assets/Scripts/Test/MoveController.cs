@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class MoveController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private bool _active = false;
-    [SerializeField] private Minion _minion = null;
+    [SerializeField] private Transform _navigator = null;
+    [SerializeField] private float _sensitivity = 3f;
+    [SerializeField] private float _width = 5f;
     public bool Active
     {
         get => _active;
@@ -22,7 +24,7 @@ public class MoveController : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public bool Holded { get; private set; } = false;
 
     private Image _background = null;
-    private float _startMinionXCoord = 0f;
+    private float _startNavigatorX = 0f;
     private Vector3 _startMousePosition = Vector3.zero;
 
     private void Awake()
@@ -35,7 +37,7 @@ public class MoveController : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         if (!Active) return;
 
         _startMousePosition = Input.mousePosition;
-        _startMinionXCoord = _minion.XCoord;
+        _startNavigatorX = _navigator.position.x;
 
         Holded = true;
     }
@@ -51,7 +53,10 @@ public class MoveController : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         if (!Active) return;
         if (!Holded) return;
 
-        float offset = (Input.mousePosition - _startMousePosition).x / Screen.width * 3f;
-        _minion.XCoord = _startMinionXCoord + offset * 1.5f;
+        float offset = (Input.mousePosition - _startMousePosition).x / Screen.width * _sensitivity;
+
+        Vector3 position = _navigator.position;
+        position.x = Mathf.Clamp(_startNavigatorX + offset, -_width / 2f, _width / 2f);
+        _navigator.position = position;
     }
 }

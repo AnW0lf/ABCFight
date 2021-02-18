@@ -1,0 +1,97 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class Navigator : MonoBehaviour
+{
+    [Header("Test")]
+    [SerializeField] private int _spawnCount = 0;
+    [Header("Move")]
+    [SerializeField] private bool _active = true;
+    [SerializeField] private float _speed = 1f;
+    [SerializeField] private float _distanceStep = 1f;
+    [SerializeField] private List<NavMeshAgent> _agents = null;
+    [Header("Minion")]
+    [SerializeField] private GameObject _minionPrefab = null;
+
+    public bool Active
+    {
+        get => _active;
+        set => _active = value;
+    }
+
+    public void AddAgent(NavMeshAgent agent)
+    {
+        if (!_agents.Contains(agent))
+            _agents.Add(agent);
+    }
+
+    public void RemoveAgent(NavMeshAgent agent)
+    {
+        if (_agents.Contains(agent))
+            _agents.Remove(agent);
+    }
+
+    private void Update()
+    {
+        if(_spawnCount != 0)
+        {
+            InstantiateMinions(_spawnCount);
+            _spawnCount = 0;
+        }
+
+        if (!Active) return;
+        _agents = _agents.Where((agent) => agent != null).ToList();
+
+        int j = 0;
+        int k = 0;
+        for(int i = 0; i < _agents.Count; i++)
+        {
+            _agents[i].SetDestination(transform.position);
+            _agents[i].stoppingDistance = k * _distanceStep;
+            j++;
+            if(j > k)
+            {
+                j = 0;
+                k++;
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!Active) return;
+        transform.position += transform.forward * _speed * Time.fixedDeltaTime;
+    }
+
+    public void InstantiateMinions(int count)
+    {
+        for (int i = 0; i < count; i++)
+            InstantiateMinion();
+    }
+
+    public void InstantiateMinion()
+    {
+        Vector3 position = transform.position;
+        int row = 0;
+        int count = _agents.Count;
+        int i = 1;
+        while (count - i >= 0)
+        {
+            row++;
+            count -= i;
+            i++;
+        }
+        position -= transform.forward * row * _distanceStep;
+
+        NavMeshAgent agent = Instantiate(_minionPrefab).GetComponent<NavMeshAgent>();
+        agent.transform.position = position;
+        agent.Warp(position);
+
+        StartCoroutine(Utils.CrossFading(Vector3.zero, Vector3.one, 0.5f, (scale) => agent.transform.localScale = scale, (a, b, c) => Vector3.Lerp(a, b, c)));
+
+        AddAgent(agent);
+    }
+}
