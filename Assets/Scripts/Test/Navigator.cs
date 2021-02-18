@@ -34,6 +34,8 @@ public class Navigator : MonoBehaviour
             _agents.Remove(agent);
     }
 
+    public bool ContainsAgent(NavMeshAgent agent) => _agents.Contains(agent);
+
     private void Update()
     {
         if(_spawnCount != 0)
