@@ -1,17 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] private QuestionData _question = null;
+    [SerializeField] private TextMeshPro _questionLabel = null;
+
+    public QuestionData QuestionData => _question;
     public UnityAction<Door, Navigator> OnEnterDoor { get; set; } = null;
 
     public bool Questioned { get; set; } = false;
 
     private List<Navigator> _navigators = new List<Navigator>();
+
+    private void Start()
+    {
+        _questionLabel.text = _question.Question;
+    }
 
     private void OnTriggerEnter(Collider other)
     {

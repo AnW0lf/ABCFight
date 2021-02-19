@@ -41,7 +41,7 @@ public class Navigator : MonoBehaviour
 
     private void Update()
     {
-        if(_spawnCount != 0)
+        if (_spawnCount != 0)
         {
             InstantiateMinions(_spawnCount);
             _spawnCount = 0;
@@ -52,15 +52,16 @@ public class Navigator : MonoBehaviour
 
         int j = 0;
         int k = 0;
-        for(int i = 0; i < _agents.Count; i++)
+        for (int i = 0; i < _agents.Count; i++)
         {
             _agents[i].SetDestination(transform.position);
             _agents[i].stoppingDistance = k * _distanceStep;
             j++;
-            if(j > k)
+            if (j > k)
             {
                 j = 0;
-                k++;
+                if (k < 4)
+                    k++;
             }
         }
     }
@@ -87,7 +88,8 @@ public class Navigator : MonoBehaviour
         {
             row++;
             count -= i;
-            i++;
+            if (i < 4)
+                i++;
         }
         position -= transform.forward * row * _distanceStep;
 

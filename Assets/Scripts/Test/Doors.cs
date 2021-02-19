@@ -19,7 +19,7 @@ public class Doors : MonoBehaviour
         _target = navigator;
         foreach (var d in _doors) d.Questioned = true;
         _target.QuestController.OnSubmit += Submit;
-        _target.QuestController.Begin();
+        _target.QuestController.Begin(door.QuestionData);
     }
 
     private void Submit(string word)
@@ -34,4 +34,6 @@ public class Doors : MonoBehaviour
         foreach (var door in _doors) Destroy(door.gameObject, 0.1f);
         navigator.InstantiateMinions(count);
     }
+
+    
 }

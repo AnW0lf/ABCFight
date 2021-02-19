@@ -351,6 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e9982b4a2b50c04b8beeed53e04a230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _label: {fileID: 815920643}
   _input: {fileID: 2094400178}
   _window: {fileID: 491077545}
 --- !u!1 &288841323
@@ -456,10 +457,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4287520063484109145, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
+      propertyPath: _question
+      value: 
+      objectReference: {fileID: 11400000, guid: f9e18567615aa444b9a49697d7f9f352, type: 2}
     - target: {fileID: 4287520063484109159, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 283a01f8a83dbbb449f557dd6c2473d6, type: 2}
+    - target: {fileID: 4287520063832493586, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
+      propertyPath: _question
+      value: 
+      objectReference: {fileID: 11400000, guid: b5cf5be4bf2010a44a6adfa564d32148, type: 2}
     - target: {fileID: 4287520063832493588, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -968,6 +977,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4738923781260352, guid: bc4f23d04e42f4b559542ad840db6530, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738923781260352, guid: bc4f23d04e42f4b559542ad840db6530, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc4f23d04e42f4b559542ad840db6530, type: 3}
 --- !u!1 &705507993
@@ -1046,7 +1063,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &705507995
@@ -1542,7 +1558,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &850074771
 Canvas:
   m_ObjectHideFlags: 0
@@ -1961,10 +1976,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4287520063484109145, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
+      propertyPath: _question
+      value: 
+      objectReference: {fileID: 11400000, guid: cc9d81aad658c0a459b83f23b258fd52, type: 2}
     - target: {fileID: 4287520063484109159, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 283a01f8a83dbbb449f557dd6c2473d6, type: 2}
+    - target: {fileID: 4287520063832493586, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
+      propertyPath: _question
+      value: 
+      objectReference: {fileID: 11400000, guid: f9e18567615aa444b9a49697d7f9f352, type: 2}
     - target: {fileID: 4287520063832493588, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2719,10 +2742,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4287520063484109145, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
+      propertyPath: _question
+      value: 
+      objectReference: {fileID: 11400000, guid: b5cf5be4bf2010a44a6adfa564d32148, type: 2}
     - target: {fileID: 4287520063484109159, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 283a01f8a83dbbb449f557dd6c2473d6, type: 2}
+    - target: {fileID: 4287520063832493586, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
+      propertyPath: _question
+      value: 
+      objectReference: {fileID: 11400000, guid: dc9528c69dca6f341a4755648e5ec3d0, type: 2}
     - target: {fileID: 4287520063832493588, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2995,7 +3026,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3136,10 +3166,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4287520063484109145, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
+      propertyPath: _question
+      value: 
+      objectReference: {fileID: 11400000, guid: dc9528c69dca6f341a4755648e5ec3d0, type: 2}
     - target: {fileID: 4287520063484109159, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 283a01f8a83dbbb449f557dd6c2473d6, type: 2}
+    - target: {fileID: 4287520063832493586, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
+      propertyPath: _question
+      value: 
+      objectReference: {fileID: 11400000, guid: cc9d81aad658c0a459b83f23b258fd52, type: 2}
     - target: {fileID: 4287520063832493588, guid: 8b3f7932909171a49847edb14ff5658a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
