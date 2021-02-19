@@ -22,7 +22,15 @@ public class Navigator : MonoBehaviour
     public bool Active
     {
         get => _active;
-        set => _active = value;
+        set
+        {
+            _active = value;
+            if (!_active)
+            {
+                _agents = _agents.Where((agent) => agent != null).ToList();
+                foreach (var agent in _agents) agent.SetDestination(agent.transform.position);
+            }
+        }
     }
 
     public void AddAgent(NavMeshAgent agent)
