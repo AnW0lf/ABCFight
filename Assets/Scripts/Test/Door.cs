@@ -9,7 +9,8 @@ using UnityEngine.Events;
 public class Door : MonoBehaviour
 {
     [SerializeField] private QuestionData _question = null;
-    [SerializeField] private TextMeshPro _questionLabel = null;
+    [SerializeField] private TextMeshPro _questionLabelFront = null;
+    [SerializeField] private TextMeshPro _questionLabelBack = null;
 
     public QuestionData QuestionData => _question;
     public UnityAction<Door, Navigator> OnEnterDoor { get; set; } = null;
@@ -20,7 +21,8 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-        _questionLabel.text = _question.Question;
+        _questionLabelFront.text = _question.Question;
+        _questionLabelBack.text = _question.Question;
     }
 
     private void OnTriggerEnter(Collider other)
