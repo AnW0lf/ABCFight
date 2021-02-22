@@ -16,6 +16,7 @@ public class Navigator : MonoBehaviour
     [Header("Minion")]
     [SerializeField] private GameObject _minionPrefab = null;
     [SerializeField] private QuestController _questController = null;
+    [SerializeField] private Team _team = Team.Team1;
 
     public QuestController QuestController => _questController;
 
@@ -105,6 +106,8 @@ public class Navigator : MonoBehaviour
         agent.transform.position = position;
         agent.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         agent.Warp(position);
+
+        agent.GetComponent<Minion>().Team = _team;
 
         StartCoroutine(Utils.CrossFading(Vector3.zero, Vector3.one, 0.5f, (scale) => agent.transform.localScale = scale, (a, b, c) => Vector3.Lerp(a, b, c)));
 
