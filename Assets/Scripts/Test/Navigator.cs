@@ -48,6 +48,14 @@ public class Navigator : MonoBehaviour
 
     public bool ContainsAgent(NavMeshAgent agent) => _agents.Contains(agent);
 
+    public void BeginFight()
+    {
+        foreach (var agent in _agents)
+        {
+            agent.GetComponent<Minion>().Fight = true;
+        }
+    }
+
     private void Update()
     {
         if (_spawnCount != 0)
