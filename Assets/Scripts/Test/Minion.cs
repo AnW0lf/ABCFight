@@ -7,6 +7,7 @@ public class Minion : MonoBehaviour
     [SerializeField] private Animator _animator = null;
     [SerializeField] private NavMeshAgent _agent = null;
     [SerializeField] private Rigidbody _rigidbody = null;
+    [SerializeField] private LookAtCamera _lookAtCamera = null;
     [SerializeField] private Team _team = Team.Team1;
 
     public Team Team
@@ -19,6 +20,11 @@ public class Minion : MonoBehaviour
     public float Health { get; set; } = 10f;
     private float _damage = 3f;
     private Minion _enemy = null;
+
+    private void Start()
+    {
+        _animator.SetFloat("Offset", Random.Range(0f, 1f));
+    }
 
     private void Update()
     {
@@ -43,6 +49,7 @@ public class Minion : MonoBehaviour
 
             if (_enemy != null)
             {
+                _agent.stoppingDistance = 0f;
                 _animator.SetBool("Win", false);
                 if (Vector3.Distance(transform.position, _enemy.transform.position) < 3f)
                 {
@@ -58,6 +65,9 @@ public class Minion : MonoBehaviour
                 _animator.SetBool("Fight", false);
                 _animator.SetBool("Win", true);
                 _agent.SetDestination(transform.position);
+                if (_lookAtCamera.enabled == false)
+                    _lookAtCamera.enabled = true;
+                FindObjectOfType<EffectController>().Enabled = true;
             }
         }
 

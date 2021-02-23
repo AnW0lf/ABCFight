@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 7876315026765717096}
   - component: {fileID: 3124745933595001633}
   - component: {fileID: 6921832067669249470}
+  - component: {fileID: 4855122456835739144}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Untagged
@@ -362,6 +363,7 @@ MonoBehaviour:
   _animator: {fileID: 7876315026773109508}
   _agent: {fileID: 7876315026765717094}
   _rigidbody: {fileID: 6921832067669249470}
+  _lookAtCamera: {fileID: 4855122456835739144}
   _team: 0
 --- !u!135 &3124745933595001633
 SphereCollider:
@@ -392,6 +394,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &4855122456835739144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7876315026765682858}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af01dafcea5c0e647914fc5b573d2043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _smoothness: 0.025
 --- !u!1 &7876315026765682860
 GameObject:
   m_ObjectHideFlags: 0
