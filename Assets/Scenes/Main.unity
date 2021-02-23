@@ -898,7 +898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnCount: 0
   _active: 1
-  _speed: 3
+  _speed: 3.5
   _distanceStep: 1
   _agents:
   - {fileID: 2046058652}
@@ -6492,7 +6492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnCount: 0
   _active: 1
-  _speed: 3
+  _speed: 3.5
   _distanceStep: 1
   _agents:
   - {fileID: 1935902214}

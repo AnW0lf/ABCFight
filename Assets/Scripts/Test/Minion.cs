@@ -42,6 +42,7 @@ public class Minion : MonoBehaviour
 
             if (_enemy != null)
             {
+                _animator.SetBool("Win", false);
                 if (Vector3.Distance(transform.position, _enemy.transform.position) < 3f)
                 {
                     _animator.SetBool("Fight", true);
@@ -54,6 +55,7 @@ public class Minion : MonoBehaviour
             else
             {
                 _animator.SetBool("Fight", false);
+                _animator.SetBool("Win", true);
                 _agent.SetDestination(transform.position);
             }
         }
