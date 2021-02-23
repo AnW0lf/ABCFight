@@ -8,7 +8,7 @@ public class Minion : MonoBehaviour
     [SerializeField] private NavMeshAgent _agent = null;
     [SerializeField] private Rigidbody _rigidbody = null;
     [SerializeField] private LookAtCamera _lookAtCamera = null;
-    [SerializeField] private Team _team = Team.Team1;
+    [SerializeField] private Team _team = Team.Player;
 
     public Team Team
     {
@@ -85,4 +85,4 @@ public class Minion : MonoBehaviour
     }
 }
 
-public enum Team { Team1, Team2, Team3, Team4 }
+public enum Team { Player, Bot, Team3, Team4 }

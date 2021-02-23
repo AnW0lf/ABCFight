@@ -6,8 +6,6 @@ using UnityEngine.AI;
 
 public class Navigator : MonoBehaviour
 {
-    [Header("Test")]
-    [SerializeField] private int _spawnCount = 0;
     [Header("Move")]
     [SerializeField] private bool _active = true;
     [SerializeField] private float _speed = 1f;
@@ -16,7 +14,8 @@ public class Navigator : MonoBehaviour
     [Header("Minion")]
     [SerializeField] private GameObject _minionPrefab = null;
     [SerializeField] private QuestController _questController = null;
-    [SerializeField] private Team _team = Team.Team1;
+    [SerializeField] private Team _team = Team.Player;
+    [SerializeField] private NotificationsController _notificaions = null;
 
     public QuestController QuestController => _questController;
 
@@ -58,12 +57,6 @@ public class Navigator : MonoBehaviour
 
     private void Update()
     {
-        if (_spawnCount != 0)
-        {
-            InstantiateMinions(_spawnCount);
-            _spawnCount = 0;
-        }
-
         if (!Active) return;
         _agents = _agents.Where((agent) => agent != null).ToList();
 
@@ -93,6 +86,8 @@ public class Navigator : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
             InstantiateMinion();
+        if (_notificaions != null)
+            _notificaions.Request($"+{count}");
     }
 
     public void InstantiateMinion()
