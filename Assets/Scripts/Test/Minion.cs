@@ -6,6 +6,7 @@ public class Minion : MonoBehaviour
 {
     [SerializeField] private Animator _animator = null;
     [SerializeField] private NavMeshAgent _agent = null;
+    [SerializeField] private Rigidbody _rigidbody = null;
     [SerializeField] private Team _team = Team.Team1;
 
     public Team Team
@@ -60,7 +61,17 @@ public class Minion : MonoBehaviour
             }
         }
 
-        if (Health <= 0f) Destroy(gameObject);
+        if (Health <= 0f) Death();
+    }
+
+    private void Death()
+    {
+        _animator.enabled = false;
+        _agent.enabled = false;
+        Destroy(_rigidbody);
+        Destroy(_agent);
+        Destroy(GetComponent<Collider>());
+        Destroy(this);
     }
 }
 
