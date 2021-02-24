@@ -10,6 +10,7 @@ public class Minion : MonoBehaviour
     [SerializeField] private LookAtCamera _lookAtCamera = null;
     [SerializeField] private Team _team = Team.Player;
     [SerializeField] private float _impulsePower = 250f;
+    [SerializeField] private SkinnedMeshRenderer _renderer = null;
 
     public Team Team
     {
@@ -21,6 +22,12 @@ public class Minion : MonoBehaviour
     public float Health { get; set; } = 10f;
     private float _damage = 3f;
     private Minion _enemy = null;
+
+    public Material Material
+    {
+        get => _renderer.material;
+        set => _renderer.material = value;
+    }
 
     private void Start()
     {
@@ -86,6 +93,21 @@ public class Minion : MonoBehaviour
             rigidboby.AddForce((-transform.forward + Vector3.up) * _impulsePower, ForceMode.Impulse);
         Destroy(this);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Minion minion) && minion != this && _team != Team.None && minion.Team == Team.None)
+        {
+            foreach (var navigator in FindObjectsOfType<Navigator>())
+            {
+                if (navigator.ContainsAgent(_agent))
+                {
+                    navigator.AddAgent(minion.GetComponent<NavMeshAgent>());
+                    return;
+                }
+            }
+        }
+    }
 }
 
-public enum Team { Player, Bot, Team3, Team4 }
+public enum Team { Player, Bot, Team3, Team4, None }

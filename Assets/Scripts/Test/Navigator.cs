@@ -16,6 +16,7 @@ public class Navigator : MonoBehaviour
     [SerializeField] private QuestController _questController = null;
     [SerializeField] private Team _team = Team.Player;
     [SerializeField] private NotificationsController _notificaions = null;
+    [SerializeField] private Material _material = null;
 
     public QuestController QuestController => _questController;
 
@@ -36,7 +37,12 @@ public class Navigator : MonoBehaviour
     public void AddAgent(NavMeshAgent agent)
     {
         if (!_agents.Contains(agent))
+        {
+            Minion minion = agent.GetComponent<Minion>();
+            minion.Material = _material;
+            minion.Team = _team;
             _agents.Add(agent);
+        }
     }
 
     public void RemoveAgent(NavMeshAgent agent)
@@ -110,8 +116,6 @@ public class Navigator : MonoBehaviour
         agent.transform.position = position;
         agent.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         agent.Warp(position);
-
-        agent.GetComponent<Minion>().Team = _team;
 
         StartCoroutine(Utils.CrossFading(Vector3.zero, Vector3.one, 0.5f, (scale) => agent.transform.localScale = scale, (a, b, c) => Vector3.Lerp(a, b, c)));
 
