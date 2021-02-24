@@ -11,6 +11,7 @@ public class Minion : MonoBehaviour
     [SerializeField] private Team _team = Team.Player;
     [SerializeField] private float _impulsePower = 250f;
     [SerializeField] private SkinnedMeshRenderer _renderer = null;
+    [SerializeField] private Material _deathMaterial = null;
 
     public Team Team
     {
@@ -93,6 +94,7 @@ public class Minion : MonoBehaviour
         Destroy(GetComponent<Collider>());
         foreach (var rigidboby in GetComponentsInChildren<Rigidbody>())
             rigidboby.AddForce((-transform.forward + Vector3.up) * _impulsePower, ForceMode.Impulse);
+        Material = _deathMaterial;
         Destroy(this);
     }
 

@@ -6,6 +6,7 @@ using UnityEngine;
 public class VictoryScreen : MonoBehaviour
 {
     [SerializeField] private RectTransform _label = null;
+    [SerializeField] private Animator _animator = null;
 
     private bool _victory = false;
 
@@ -15,9 +16,10 @@ public class VictoryScreen : MonoBehaviour
         _victory = true;
         _label.gameObject.SetActive(true);
         StartCoroutine(Utils.CrossFading(
-            Vector3.up * 500f, Vector3.zero, 0.4f,
+            Vector3.up * 500f, Vector3.zero, 0.3f,
             (position) => _label.anchoredPosition = position,
             (a, b, c) => Vector3.Lerp(a, b, c)
             ));
+        StartCoroutine(Utils.DelayedCall(0.3f, () => _animator.enabled = true));
     }
 }
