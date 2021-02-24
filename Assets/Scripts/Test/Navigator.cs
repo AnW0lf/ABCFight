@@ -53,6 +53,7 @@ public class Navigator : MonoBehaviour
         {
             agent.GetComponent<Minion>().Fight = true;
         }
+        Camera.main.GetComponent<CameraController>().BeginFight();
     }
 
     private void Update()

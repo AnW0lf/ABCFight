@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private bool _freezeX = true;
+    [SerializeField] private float _zoom = 8f;
 
     private float _startX = 0f;
+    private bool _fight = false;
+    private Vector3 _endPosition = Vector3.zero;
 
     private void Start()
     {
@@ -15,17 +17,21 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (_freezeX)
+        if (!_fight)
         {
             Vector3 position = transform.position;
             position.x = _startX;
             transform.position = position;
         }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, _endPosition, 0.75f * Time.deltaTime);
+        }
     }
 
     private void FixedUpdate()
     {
-        if (_freezeX)
+        if (!_fight)
         {
             Vector3 position = transform.position;
             position.x = _startX;
@@ -35,11 +41,17 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (_freezeX)
+        if (!_fight)
         {
             Vector3 position = transform.position;
             position.x = _startX;
             transform.position = position;
         }
+    }
+
+    public void BeginFight()
+    {
+        _fight = true;
+        _endPosition = transform.position + transform.forward * _zoom;
     }
 }
