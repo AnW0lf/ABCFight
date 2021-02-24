@@ -21,8 +21,8 @@ public class QuestController : MonoBehaviour
         _questionData = questionData;
         _label.text = _questionData.Question;
         _window.SetActive(true);
-        StartCoroutine(Utils.CrossFading(Vector3.zero, Vector3.one, 0.4f, (scale) => _window.transform.localScale = scale, (a, b, c) => Vector3.Lerp(a, b, c)));
-        StartCoroutine(Utils.CrossFading(Vector3.forward * 126f, Vector3.zero, 0.4f, (angle) => _window.transform.localEulerAngles = angle, (a, b, c) => Vector3.Lerp(a, b, c)));
+        StartCoroutine(Utils.CrossFading(Vector3.zero, Vector3.one, 0.2f, (scale) => _window.transform.localScale = scale, (a, b, c) => Vector3.Lerp(a, b, c)));
+        StartCoroutine(Utils.CrossFading(Vector3.forward * 126f, Vector3.zero, 0.2f, (angle) => _window.transform.localEulerAngles = angle, (a, b, c) => Vector3.Lerp(a, b, c)));
         _fade.enabled = true;
         _input.text = "";
         _input.Select();
