@@ -46,6 +46,7 @@ public class Minion : MonoBehaviour
                 float distance = float.MaxValue;
                 foreach (var enemy in enemies)
                 {
+                    if (enemy.Team == Team.None) continue;
                     float newDistance = Vector3.Distance(transform.position, enemy.transform.position);
                     if (newDistance < distance)
                     {
@@ -76,6 +77,7 @@ public class Minion : MonoBehaviour
                 if (_lookAtCamera.enabled == false)
                     _lookAtCamera.enabled = true;
                 FindObjectOfType<EffectController>().Enabled = true;
+                FindObjectOfType<VictoryScreen>().Begin();
             }
         }
 
