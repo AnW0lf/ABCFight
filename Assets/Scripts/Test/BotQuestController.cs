@@ -7,7 +7,7 @@ public class BotQuestController : QuestController
 {
     public override void Begin(QuestionData questionData)
     {
-        StartCoroutine(Utils.DelayedCall(Random.Range(2f, 7f), () => Submit()));
+        StartCoroutine(Utils.DelayedCall(4f, () => Submit()));
     }
 
     public override void Submit()
