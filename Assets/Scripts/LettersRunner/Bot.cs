@@ -10,6 +10,6 @@ public class Bot : MonoBehaviour
 
     public void Begin()
     {
-        StartCoroutine(Utils.DelayedCall(Random.Range(2f, 5f), () => _wordSetter.SetWord(_player, _words[Random.Range(0, _words.Length)])));
+        StartCoroutine(Utils.DelayedCall(4f, () => _wordSetter.SetWord(_player, _words[Random.Range(0, _words.Length)])));
     }
 }

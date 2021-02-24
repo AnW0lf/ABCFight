@@ -9,6 +9,7 @@ public class Minion : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody = null;
     [SerializeField] private LookAtCamera _lookAtCamera = null;
     [SerializeField] private Team _team = Team.Player;
+    [SerializeField] private float _impulsePower = 250f;
 
     public Team Team
     {
@@ -81,6 +82,8 @@ public class Minion : MonoBehaviour
         Destroy(_rigidbody);
         Destroy(_agent);
         Destroy(GetComponent<Collider>());
+        foreach (var rigidboby in GetComponentsInChildren<Rigidbody>())
+            rigidboby.AddForce((-transform.forward + Vector3.up) * _impulsePower, ForceMode.Impulse);
         Destroy(this);
     }
 }
