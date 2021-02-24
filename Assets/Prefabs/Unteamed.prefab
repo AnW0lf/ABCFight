@@ -224,7 +224,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.4
-  m_Speed: 3.75
+  m_Speed: 6
   m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 100
@@ -254,6 +254,7 @@ MonoBehaviour:
   _lookAtCamera: {fileID: 2353243518600300810}
   _team: 4
   _impulsePower: 250
+  _renderer: {fileID: 1046788314171839174}
 --- !u!135 &5230343257855673379
 SphereCollider:
   m_ObjectHideFlags: 0

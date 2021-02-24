@@ -366,6 +366,7 @@ MonoBehaviour:
   _lookAtCamera: {fileID: 4855122456835739144}
   _team: 0
   _impulsePower: 250
+  _renderer: {fileID: 7876315026768795076}
 --- !u!135 &3124745933595001633
 SphereCollider:
   m_ObjectHideFlags: 0
