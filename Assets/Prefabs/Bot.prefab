@@ -207,7 +207,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8c19a618a0bd9844583b91dca0875a34, type: 2}
+  - {fileID: 2100000, guid: 40fbd87e4355e9d458ef47af9a52a1b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -367,6 +367,7 @@ MonoBehaviour:
   _team: 1
   _impulsePower: 250
   _renderer: {fileID: 7876315026768795076}
+  _deathMaterial: {fileID: 2100000, guid: 76bac3343f122b640b0afa44882d4038, type: 2}
 --- !u!135 &3124745933595001633
 SphereCollider:
   m_ObjectHideFlags: 0

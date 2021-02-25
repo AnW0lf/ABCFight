@@ -367,6 +367,7 @@ MonoBehaviour:
   _team: 0
   _impulsePower: 250
   _renderer: {fileID: 7876315026768795076}
+  _deathMaterial: {fileID: 2100000, guid: c883953f94b14e444af60ddc190e4989, type: 2}
 --- !u!135 &3124745933595001633
 SphereCollider:
   m_ObjectHideFlags: 0
